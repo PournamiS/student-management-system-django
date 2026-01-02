@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Profile</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    body {
+        background: linear-gradient(to right, #d0dbf6, #fdbdf7);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+    }
+
+    .profile-card {
+        max-width: 600px;
+        margin: 50px auto;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .card-header {
+        background-color: #4b0082;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .card-body h5 {
+        color: #22082d;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .card-body p {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .btn-card {
+        border-radius: 50px;
+        font-weight: bold;
+    }
+
+    .card-footer {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #555;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card profile-card text-center">
+    <div class="card-header">
+        Teacher Profile
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ teacher.Teacher_id.first_name }} {{ teacher.Teacher_id.last_name }}</h5>
+        <p><strong>Username:</strong> {{ teacher.Teacher_id.username }}</p>
+        <p><strong>Email:</strong> {{ teacher.Teacher_id.email }}</p>
+        <p><strong>Address:</strong> {{ teacher.address }}</p>
+        <p><strong>Phone Number:</strong> {{ teacher.Ph_no }}</p>
+        <p><strong>Salary:</strong> {{ teacher.salary }}</p>
+        <p><strong>Experience:</strong> {{ teacher.experience }} years</p>
+        <a href="{% url 'teacher_home' %}" class="btn btn-primary btn-card mt-3">Back to Home</a>
+        <a href="{% url 'logout' %}" class="btn btn-danger btn-card mt-3">Logout</a>
+    </div>
+    <div class="card-footer text-muted">
+        Profile last updated: {{ teacher.last_updated|default:"N/A" }}
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

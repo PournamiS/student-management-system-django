@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Teacher</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #f0eaf4;
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        color: #22082d;
+        font-weight: bold;
+        margin: 30px 0 20px 0;
+        text-align: center;
+    }
+
+    .table-container {
+        max-width: 1200px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .btn-action {
+        border-radius: 50px;
+        padding: 5px 15px;
+    }
+</style>
+</head>
+<body>
+
+<div class="table-container">
+    <h2>View Teachers</h2>
+
+    <table class="table table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Salary</th>
+                <th>Experience</th>
+                <th>Action</th>
+                <th>Approve</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for teacher in view %}
+            <tr class="{% cycle 'table-primary' 'table-danger' %}">
+                <td>{{ teacher.Teacher_id.first_name }}</td>
+                <td>{{ teacher.Teacher_id.last_name }}</td>
+                <td>{{ teacher.Teacher_id.username }}</td>
+                <td>{{ teacher.Teacher_id.email }}</td>
+                <td>{{ teacher.address }}</td>
+                <td>{{ teacher.Ph_no }}</td>
+                <td>{{ teacher.salary }}</td>
+                <td>{{ teacher.experience }}</td>
+                <td><a href="/deleteteacher/{{ teacher.id }}" class="btn btn-danger btn-action">Delete</a></td>
+                <td><a href="/approveteacher/{{ teacher.id }}" class="btn btn-primary btn-action">Approve</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

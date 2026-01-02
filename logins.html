@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Student Management System</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #dbeafe; /* pastel blue background */
+            min-height: 100vh;
+        }
+
+        .login-card {
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        .login-title {
+            font-weight: bold;
+            font-size: 28px;
+            color: #22082d;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #4338ca;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+    <div class="row w-100 justify-content-center">
+        <div class="col-md-5 col-lg-4">
+
+            <div class="login-card text-center">
+
+                <h2 class="login-title">Login</h2>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3 text-start">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+                    </div>
+
+                    <div class="mb-3 text-start">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+
+                {% if error %}
+                <p class="text-danger mt-3">{{ error }}</p>
+                {% endif %}
+
+        
+
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if messages %}
+  {% for message in messages %}
+    <script>
+      Swal.fire({
+        title: "{% if message.tags == 'success' %}Success 🎉{% else %}Error ❌{% endif %}",
+        text: "{{ message }}",
+        icon: "{% if message.tags == 'success' %}success{% else %}error{% endif %}",
+        confirmButtonColor: "{% if message.tags == 'success' %}#4a6cf7{% else %}#d33{% endif %}"
+      });
+    </script>
+  {% endfor %}
+{% endif %}
+
+
+
+<!-- Bootstrap JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
